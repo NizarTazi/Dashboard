@@ -57,9 +57,9 @@ export const DriverList = () => {
         
         <Table.Column dataIndex="birthday" title={"BirthDay"} />
         <Table.Column dataIndex={"cars"} title={"immat"} 
-        render={(value) =>
+        render={(value: any[]) =>
            (
-            tableProps.dataSource?.map((item) => item.cars.map((items: { immat: any; }) => items.immat))
+            value.map((item) => item.immat + "\n") 
           )
         }/>
         
