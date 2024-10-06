@@ -1,5 +1,6 @@
 import { Edit, useForm } from "@refinedev/antd";
-import { Form, Input } from "antd";
+import { useList } from "@refinedev/core";
+import { DatePicker, Form, Input } from "antd";
 
 export const DriverEdit = () => {
   const { formProps, saveButtonProps } = useForm({});
@@ -8,8 +9,8 @@ export const DriverEdit = () => {
     <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
-          label={"Title"}
-          name={["title"]}
+          label={"Full Name"}
+          name={["display_name"]}
           rules={[
             {
               required: true,
@@ -18,7 +19,45 @@ export const DriverEdit = () => {
         >
           <Input />
         </Form.Item>
+        <Form.Item
+          label={"Phone Number"}
+          name={["phone"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label={"Email"}
+          name={["email"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label={"Licence Expiration"}
+          name={["licence_expiration"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input/>
+        </Form.Item>
       </Form>
+      
     </Edit>
   );
 };
+function useMany(arg0: { resource: string; ids: any; queryOptions: { enabled: boolean; }; }): { data: any; } {
+  throw new Error("Function not implemented.");
+}
+

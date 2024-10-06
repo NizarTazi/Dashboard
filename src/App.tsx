@@ -62,7 +62,7 @@ function App() {
                     edit: "/drivers/edit/:id",
                     show: "/drivers/show/:id",
                     meta: {
-                      label: "tarma",
+                      label: "Drivers",
                       canDelete: true,
                     },
                   },
