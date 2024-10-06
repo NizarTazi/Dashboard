@@ -7,6 +7,7 @@ import {
   ErrorComponent,
   ThemedLayoutV2,
   ThemedSiderV2,
+  ThemedTitleV2,
   useNotificationProvider,
 } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
@@ -36,11 +37,13 @@ import {
   CategoryShow,
 } from "./pages/categories";
 import { supabaseClient } from "./utility";
+import { text } from "stream/consumers";
+import { DriverCreate, DriverEdit, DriverList, DriverShow } from "./pages/drivers";
 
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
+    
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <AntdApp>
@@ -52,6 +55,17 @@ function App() {
                 routerProvider={routerBindings}
                 notificationProvider={useNotificationProvider}
                 resources={[
+                  {
+                    name: "drivers",
+                    list: "/drivers",
+                    create: "/drivers/create",
+                    edit: "/drivers/edit/:id",
+                    show: "/drivers/show/:id",
+                    meta: {
+                      label: "tarma",
+                      canDelete: true,
+                    },
+                  },
                   {
                     name: "blog_posts",
                     list: "/blog-posts",
@@ -88,6 +102,10 @@ function App() {
                         fallback={<CatchAllNavigate to="/login" />}
                       >
                         <ThemedLayoutV2
+                          Title={(texter)=> < ThemedTitleV2 
+                            text = "Dashboard Taxi"
+                            collapsed={false} />
+                          }
                           Header={Header}
                           Sider={(props) => <ThemedSiderV2 {...props} fixed />}
                         >
@@ -112,6 +130,12 @@ function App() {
                       <Route path="edit/:id" element={<CategoryEdit />} />
                       <Route path="show/:id" element={<CategoryShow />} />
                     </Route>
+                    <Route path="/drivers">
+                      <Route index element={<DriverList />} />
+                      <Route path="create" element={<DriverCreate />} />
+                      <Route path="edit/:id" element={<DriverEdit />} />
+                      <Route path="show/:id" element={<DriverShow />} />
+                    </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
                   <Route
@@ -135,16 +159,29 @@ function App() {
                               password: "refine-supabase",
                             },
                           }}
+                          title={
+                            < ThemedTitleV2 
+                            text = "Dashboard Taxi"
+                            collapsed={false} />
+                          }
                         />
                       }
                     />
                     <Route
                       path="/register"
-                      element={<AuthPage type="register" />}
+                      element={<AuthPage type="register" title={
+                        < ThemedTitleV2 
+                        text = "Dashboard Taxi"
+                        collapsed={false} />
+                      }/>}
                     />
                     <Route
                       path="/forgot-password"
-                      element={<AuthPage type="forgotPassword" />}
+                      element={<AuthPage type="forgotPassword" title={
+                        < ThemedTitleV2 
+                        text = "Dashboard Taxi"
+                        collapsed={false} />
+                      }/>}
                     />
                   </Route>
                 </Routes>
