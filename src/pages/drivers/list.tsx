@@ -56,7 +56,7 @@ export const DriverList = () => {
         defaultSortOrder={getDefaultSortOrder("licence_expiration", sorters)} />
         
         <Table.Column dataIndex="birthday" title={"BirthDay"} />
-        <Table.Column dataIndex={"cars"} title={"immat"} 
+        <Table.Column dataIndex={"cars"} title={"Plate Number"} 
         render={(value: any[]) =>
            (
             value.map((item) => item.immat + "\n") 
