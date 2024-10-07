@@ -39,6 +39,7 @@ import {
 import { supabaseClient } from "./utility";
 import { text } from "stream/consumers";
 import { DriverCreate, DriverEdit, DriverList, DriverShow } from "./pages/drivers";
+import { CarsCreate, CarsEdit, CarsList, CarsShow } from "./pages/cars";
 
 function App() {
   return (
@@ -63,6 +64,17 @@ function App() {
                     show: "/drivers/show/:id",
                     meta: {
                       label: "Drivers",
+                      canDelete: true,
+                    },
+                  },
+                  {
+                    name: "cars",
+                    list: "/cars",
+                    create: "/cars/create",
+                    edit: "/cars/edit/:id",
+                    show: "/cars/show/:id",
+                    meta: {
+                      label: "Cars",
                       canDelete: true,
                     },
                   },
@@ -135,6 +147,12 @@ function App() {
                       <Route path="create" element={<DriverCreate />} />
                       <Route path="edit/:id" element={<DriverEdit />} />
                       <Route path="show/:id" element={<DriverShow />} />
+                    </Route>
+                    <Route path="/cars">
+                      <Route index element={<CarsList />} />
+                      <Route path="create" element={<CarsCreate />} />
+                      <Route path="edit/:id" element={<CarsEdit />} />
+                      <Route path="show/:id" element={<CarsShow />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
