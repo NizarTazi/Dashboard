@@ -26,7 +26,8 @@ export const DriverList = () => {
     meta: {
       select: "*, cars!inner(immat)",
     },
-  });  
+  }); 
+  
   //console.log(tableProps?.dataSource?.map((item)=> item?.drivers_cars?.map((items: any) => items.driver_id)))
 
   return (
