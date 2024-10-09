@@ -40,6 +40,8 @@ import { supabaseClient } from "./utility";
 import { text } from "stream/consumers";
 import { DriverCreate, DriverEdit, DriverList, DriverShow } from "./pages/drivers";
 import { CarsCreate, CarsEdit, CarsList, CarsShow } from "./pages/cars";
+import { DashboardPage } from "./pages/dashboard";
+import { CarOutlined, DashboardOutlined, UserOutlined } from "@ant-design/icons";
 
 function App() {
   return (
@@ -57,6 +59,14 @@ function App() {
                 notificationProvider={useNotificationProvider}
                 resources={[
                   {
+                    name: "dashboard",
+                    list: "/",
+                    meta: {
+                      label: "Dashboard",
+                      icon: <DashboardOutlined />,
+                    },
+                  },
+                  {
                     name: "drivers",
                     list: "/drivers",
                     create: "/drivers/create",
@@ -64,7 +74,8 @@ function App() {
                     show: "/drivers/show/:id",
                     meta: {
                       label: "Drivers",
-                      canDelete: true,
+                      icon: <UserOutlined />   ,
+                      canDelete: true,                    
                     },
                   },
                   {
@@ -75,6 +86,7 @@ function App() {
                     show: "/cars/show/:id",
                     meta: {
                       label: "Cars",
+                      icon:<CarOutlined />,
                       canDelete: true,
                     },
                   },
@@ -126,10 +138,7 @@ function App() {
                       </Authenticated>
                     }
                   >
-                    <Route
-                      index
-                      element={<NavigateToResource resource="blog_posts" />}
-                    />
+                    <Route index element={<DashboardPage />} />
                     <Route path="/blog-posts">
                       <Route index element={<BlogPostList />} />
                       <Route path="create" element={<BlogPostCreate />} />
